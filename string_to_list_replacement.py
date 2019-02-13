@@ -43,7 +43,11 @@ tokens = [parse_element(token) for token in tokens]
 tokens = tokens[1:-1]  # Remove initial brackets
 
 while "[" in tokens:
+    # The first opening bracket from the right will be the opening bracket
+    # of the deepest nested list.
     deepest_open_index = rfind_in_list(tokens, "[")
+    # The closing bracket of that list is just the next closing bracket to
+    # the right.
     deepest_close_index = find_in_list(tokens, "]", deepest_open_index)
     deepest_list = tokens[deepest_open_index + 1:deepest_close_index]
 
